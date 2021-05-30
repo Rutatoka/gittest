@@ -35,14 +35,14 @@ let setGameEngine = function(callback) {
 }
 let gameLoopRight = function() {
     drawRect();
-    x += 1;
+    x += 5;
     if (x >= 250) {
         setGameEngine(gameLoopLeft);
     }
 };
 let gameLoopLeft = function() {
     drawRect();
-    x -= 1;
+    x -= 5;
 
     if (x < 0) {
         setGameEngine(gameLoopRight);
