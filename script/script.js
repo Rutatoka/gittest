@@ -7,7 +7,7 @@ let x = 10,
 let gameEngine;
 // рисуем квадрат
 function drawRect() {
-    context.fillStyle = "black";
+    context.fillStyle = "white";
     context.clearRect(0, 0, 300, 300)
     context.fillRect(x, y, 50, 50);
 }
@@ -93,14 +93,17 @@ let theme = loadAudio(['theme.mp3']);
 let a;
 theme.setVolume(0.7);
 jump.setVolume(0.3);
-theme.play();
 
+theme.play();
 setInterval(function() {
     if (a == 32) {
         jump.play();
     }
     if (a == 27) {
         theme.stop();
+    }
+    if (a == 17) {
+        theme.play();
     }
     a = 0;
 }, 20);
