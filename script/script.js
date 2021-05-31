@@ -54,18 +54,19 @@ let gameLoopLeft = function() {
 gameEngineStart(gameLoopRight)
 
 // загрузка аудио
-function loadAudio(arr) {
+function loadAudio(arr, vol) {
     let audio = document.createElement("audio")
     for (let i = 0, len = arr.length; i < len; i += 1) {
         let source = document.createElement("source")
         source.src = arr[i];
         audio.appendChild(source);
     }
-
+    audio.volume = 1 || vol;
     let o = {
         dom: false,
         state: "stop",
         play: function() {
+            this.dom.currentTime = 0;
             this.dom.play();
             this.state = "play";
         },
@@ -77,13 +78,32 @@ function loadAudio(arr) {
             this.dom.pause();
             this.dom.currentTime = 0;
             this.state = "stop";
-        }
+        },
 
+        setVolume: function(vol) {
+            this.dom.volume = vol;
+        }
 
     };
     o.dom = audio
     return o;
 }
-let a1 = loadAudio(['jumpo.wav']);
-let a2 = loadAudio(['theme.mp3']);
-a1.play();
+let jump = loadAudio(['jump.wav']);
+let theme = loadAudio(['theme.mp3']);
+let a;
+theme.setVolume(0.7);
+jump.setVolume(0.3);
+theme.play();
+
+setInterval(function() {
+    if (a == 32) {
+        jump.play();
+    }
+    if (a == 27) {
+        theme.stop();
+    }
+    a = 0;
+}, 20);
+window.onkeyup = function(e) {
+    a = e.keyCode;
+};
