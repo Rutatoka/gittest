@@ -141,7 +141,6 @@ function loadImage(path, width, height, count) {
         loaded: false,
         num: 1
     };
-
     image.onload = function() {
         result.loaded = true;
     };
