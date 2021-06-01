@@ -91,8 +91,8 @@ function loadAudio(arr, vol) {
 let jump = loadAudio(['jump.wav']);
 let theme = loadAudio(['theme.mp3']);
 let a;
-theme.setVolume(0.7);
-jump.setVolume(0.3);
+theme.setVolume(0.4);
+jump.setVolume(0.6);
 
 theme.play();
 setInterval(function() {
@@ -113,31 +113,43 @@ window.onkeyup = function(e) {
 
 // animation
 let context = document.getElementById("canvas").getContext("2d");
-let width = 100,
+let width = 200,
     height = 100;
-let image = document.getElementById("image");
-let x = 0;
-let i = 1;
+// let image = document.getElementById("image");
+let girl = loadImage("last-guardian-sprites/amg3_rt2.gif", 32, 32, 2);
+let girl2 = loadImage("last-guardian-sprites/amg3_lf2.gif", 32, 32, 2);
+
 setInterval(function() {
-    drawImage("last-guardian-sprites/amg3_rt2.gif", i, 3);
-    if (i >= 2) i = 1;
-    else i += 1;
+    context.clearRect(0, 0, 200, 100);
+    drawImage(girl, 0, 0);
+    drawImage(girl2, 70, 23);
+
 }, 200)
 
-function drawImage(img, num, speed) {
-    num = num ? num - 1 : 0;
-    x += speed ? speed : 0;
-    image.onload = function() {
-        width = image.width;
-        height = image.height;
-        context.clearRect(0, 0, 100, 100);
-        context.drawImage(image, 32 * num, 0, 32, 32, x, 0, 32, 32);
-        image.style.display = "none";
-    };
-    image.src = img;
+function drawImage(img, x, y) {
+    if (img.num >= img.count) img.num = 1
+    else img.num += 1;
+    context.drawImage(img.dom, img.width * (img.num - 1), 0, img.width, img.height, x, y, 32, 32);
+
 }
 
+function loadImage(path, width, height, count) {
+    let image = document.createElement("img");
 
+    let result = {
+        dom: image,
+        width: width,
+        height: height,
+        count: count,
+        loaded: false,
+        num: 1
+    };
+    image.onload = function() {
+        result.loaded = true;
+    };
+    image.src = path;
+    return result;
+}
 //    
 // function drawImage(img, num) {
 //     num = num ? num - 1 : 0;
