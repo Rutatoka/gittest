@@ -115,7 +115,6 @@ window.onkeyup = function(e) {
 let context = document.getElementById("canvas").getContext("2d");
 let width = 200,
     height = 100;
-// let image = document.getElementById("image");
 let girl = loadImage("last-guardian-sprites/amg3_rt2.gif", 32, 32, 2);
 let girl2 = loadImage("last-guardian-sprites/amg3_lf2.gif", 32, 32, 2);
 
@@ -130,12 +129,10 @@ function drawImage(img, x, y) {
     if (img.num >= img.count) img.num = 1
     else img.num += 1;
     context.drawImage(img.dom, img.width * (img.num - 1), 0, img.width, img.height, x, y, 32, 32);
-
 }
 
 function loadImage(path, width, height, count) {
     let image = document.createElement("img");
-
     let result = {
         dom: image,
         width: width,
@@ -144,26 +141,11 @@ function loadImage(path, width, height, count) {
         loaded: false,
         num: 1
     };
+
     image.onload = function() {
         result.loaded = true;
     };
+
     image.src = path;
     return result;
 }
-//    
-// function drawImage(img, num) {
-//     num = num ? num - 1 : 0;
-//     image1.onload = function() {
-//         width = image1.width;
-//         height = image1.height;
-//         context.drawImage(image1, 16 * num, 0, 16, 27, 0, 0, 16, 27);
-//         image1.style.display = "none"
-//     };
-//     image2.onload = function() {
-//         width = image2.width;
-//         height = image2.height;
-//         context.drawImage(image2, 16 * num, 0, 16, 27, 0, 0, 16, 27);
-//         image2.style.display = "none"
-//     };
-//     
-// }
