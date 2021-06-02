@@ -107,9 +107,9 @@ setInterval(function() {
     }
     a = 0;
 }, 20);
-window.onkeyup = function(e) {
-    a = e.keyCode;
-};
+// window.onkeyup = function (event) {
+//     a = event.keyCode;
+// };
 
 // animation
 let canvas = document.getElementById("canvas");
@@ -190,4 +190,72 @@ function loadImage(path, width, height, count) {
 
     image.src = path;
     return result;
+}
+// клавиши
+let keys = {
+    "W": 87,
+    "S": 83,
+    "A": 65,
+    "D": 68
+}
+
+
+function engine() {
+    // context.clearRect(0, 0, 100, 100);
+    if (isKeyDown('W'))
+        context.fillText('W', 30, 60);
+    if (isKeyDown('S'))
+        context.fillText('S', 30, 70);
+    if (isKeyDown('D'))
+        context.fillText('D', 40, 70);
+    if (isKeyDown('A'))
+        context.fillText('A', 20, 70);
+    // if (isKeyDown('W'))
+
+    //     document.getElementById('key').innerHTML = "knopka W";
+    // if (isKeyDown('S'))
+
+    //     document.getElementById('key').innerHTML = "knopka S";
+
+    // if (isKeyDown('D'))
+
+    //     document.getElementById('key').innerHTML = "knopka D";
+
+    // if (isKeyDown('A'))
+
+    //     document.getElementById('key').innerHTML = "knopka A";
+    // else {
+    //     document.getElementById('key').innerHTML = "";
+    // }
+}
+let keyDown = {};
+let setKey = function(keyCode) {
+    keyDown[keyCode] = true;
+}
+let clearKey = function(keyCode) {
+    keyDown[keyCode] = false;
+}
+let isKeyDown = function(keyName) {
+    return keyDown[keys[keyName]] == true;
+}
+
+let gameEngine = function() {
+    if (typeof engine == 'function')
+        engine();
+    else
+        document.body, innerHTML = 'ne opred  func engin';
+
+
+    requestAnimationFrame(gameEngine);
+}
+window.onload = function() {
+
+    window.onkeydown = function(e) {
+        setKey(e.keyCode);
+        a = e.keyCode;
+    };
+    window.onkeyup = function(e) {
+        clearKey(e.keyCode);
+    };
+    gameEngine();
 }
