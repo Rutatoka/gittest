@@ -112,9 +112,52 @@ window.onkeyup = function(e) {
 };
 
 // animation
+let canvas = document.getElementById("canvas");
+
+function launchFullScreen(element) {
+    if (element.requestFullScreen) {
+        element.requestFullScreen();
+    } else if (element.mozrequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullScreen) {
+        element.webkitRequestFullScreen();
+    }
+}
+
+function cancelFullScreen() {
+    if (element.cancelFullScreen) {
+        element.cancelFullScreen();
+    } else if (element.mozCancelFullScreen) {
+        element.mozCancelFullScreen();
+    } else if (element.webkitCancelFullScreen) {
+        element.webkitCancelFullScreen();
+    }
+}
+
+canvas.onclick = function() {
+    launchFullScreen(canvas);
+    // canvas.onclick=function(){
+    // cancelFullScreen();
+    // };
+    // onfullscreenchange();
+};
+// let onfullscreenchange = function() {
+//     let fullscreenElement =
+//         document.fullscreenElement ||
+//         document.mozFullscreenElement ||
+//         document.webkitFullscreenElement;
+//     let fullscreenEnabled =
+//         document.fullscreenEnabled ||
+//         document.mozFullscreenEnabled ||
+//         document.webkitFullscreenEnabled;
+//     console.log("fullscreenEnabled=" + fullscreenEnabled, ",fullscreenElement=", fullscreenElement);
+
+// }
+
 let context = document.getElementById("canvas").getContext("2d");
 let width = 200,
     height = 100;
+
 let girl = loadImage("last-guardian-sprites/amg3_rt2.gif", 32, 32, 2);
 let girl2 = loadImage("last-guardian-sprites/amg3_lf2.gif", 32, 32, 2);
 
