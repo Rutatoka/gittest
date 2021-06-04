@@ -18,7 +18,21 @@ body {
     height: 100px;
 }
 
-p {
+p,
+#position {
     font-size: 1.5em;
     color: antiquewhite
+}
+
+canvas {
+    z-index: 1;
+}
+
+#cursor {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient( rgb(117, 126, 121), rgb(76, 187, 141));
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
 }

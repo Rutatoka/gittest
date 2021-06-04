@@ -253,9 +253,36 @@ window.onload = function() {
     window.onkeydown = function(e) {
         setKey(e.keyCode);
         a = e.keyCode;
+
     };
     window.onkeyup = function(e) {
         clearKey(e.keyCode);
+        // position.innerHTML = "position of cursor:" + x + "/" + y;
+
     };
+
     gameEngine();
 }
+
+// курсор мыши
+let position = document.getElementById('position');
+let cursor = document.getElementById('cursor');
+
+let x = 0,
+    y = 0;
+position.innerHTML = "position of cursor:" + x + "/" + y;
+
+setInterval(function() {
+
+    position.innerHTML = "position of cursor:" + x + "/" + y;
+    cursor.style.left = x - 25 + 'px';
+    cursor.style.top = y - 25 + 'px';
+}, 1000 / 60)
+
+window.onmousemove = function(event) {
+    x = event.pageX;
+    y = event.pageY;
+};
+// window.onclick = function() {
+
+// };
