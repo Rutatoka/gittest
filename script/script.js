@@ -162,9 +162,10 @@ let girl = loadImage("last-guardian-sprites/amg3_rt2.gif", 32, 32, 2);
 let girl2 = loadImage("last-guardian-sprites/amg3_lf2.gif", 32, 32, 2);
 
 setInterval(function() {
-    context.clearRect(0, 0, 200, 100);
+    context.clearRect(0, 0, width, height);
     drawImage(girl, 0, 0);
     drawImage(girl2, 70, 23);
+
 
 }, 200)
 
@@ -267,9 +268,11 @@ window.onload = function() {
 // курсор мыши
 let position = document.getElementById('position');
 let cursor = document.getElementById('cursor');
+let pool = document.getElementById('pool');
 
 let x = 0,
-    y = 0;
+    y = 0,
+    dx = 10;
 position.innerHTML = "position of cursor:" + x + "/" + y;
 
 setInterval(function() {
@@ -277,12 +280,53 @@ setInterval(function() {
     position.innerHTML = "position of cursor:" + x + "/" + y;
     cursor.style.left = x - 25 + 'px';
     cursor.style.top = y - 25 + 'px';
+    dx += 1;
+    pool.style.left = dx + 'px';
+
 }, 1000 / 60)
 
-window.onmousemove = function(event) {
+pool.onmousemove = function(event) {
     x = event.pageX;
     y = event.pageY;
 };
 // window.onclick = function() {
 
 // };
+
+// Вращение
+let z = 0; //x
+let q = 0; //y
+let p = 0; //угол
+let drawRect = function(z, q, w, h, p) {
+    let dz = z + w / 2;
+    let dq = q + h / 2;
+
+
+    if (p) {
+        p = p * (Math.PI / 20) //180deg
+        context.save();
+        context.translate(dz, dq);
+        context.rotate(p);
+        context.translate(-dz, -dq)
+    }
+
+    context.strokeRect(z, q, w, h);
+
+
+    if (p) {
+        context.restore();
+    }
+
+}
+
+
+
+setInterval(function() {
+
+    drawRect(z, q, 33, 33, p);
+    drawRect(z + 20, q + 20, 33, 33, -p);
+
+    z++;
+    q++;
+    p++;
+}, 200)

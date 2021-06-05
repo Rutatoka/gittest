@@ -21,11 +21,14 @@ body {
 p,
 #position {
     font-size: 1.5em;
-    color: antiquewhite
+    color: antiquewhite;
 }
 
+p {}
+
 canvas {
-    z-index: 1;
+    z-index: 2;
+    cursor: pointer;
 }
 
 #cursor {
@@ -34,5 +37,15 @@ canvas {
     background: linear-gradient( rgb(117, 126, 121), rgb(76, 187, 141));
     position: absolute;
     border-radius: 50%;
-    z-index: -1;
+    z-index: 2;
+}
+
+#pool {
+    width: 330px;
+    height: 300px;
+    border: 4px solid gray;
+    position: absolute;
+    right: 10%;
+    top: 1%;
+    z-index: 0;
 }
