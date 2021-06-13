@@ -11,7 +11,7 @@
 //     context.clearRect(0, 0, 300, 300)
 //     context.fillRect(x, y, 50, 50);
 // }
-
+// 
 // let nexGameStep = (function() {
 //     return requestAnimationFrame ||
 //         webkitRequestAnimationFrame ||
@@ -83,7 +83,6 @@ function loadAudio(arr, vol) {
         setVolume: function(vol) {
             this.dom.volume = vol;
         }
-
     };
     o.dom = audio
     return o;
@@ -200,7 +199,6 @@ let keys = {
     "D": 68
 }
 
-
 function engine() {
     // context.clearRect(0, 0, 100, 100);
     if (isKeyDown('W'))
@@ -274,7 +272,6 @@ let x = 0,
     y = 0,
     dx = 10;
 position.innerHTML = "position of cursor:" + x + "/" + y;
-
 setInterval(function() {
 
     position.innerHTML = "position of cursor:" + x + "/" + y;
@@ -300,8 +297,6 @@ let p = 0; //угол
 let drawRect = function(z, q, w, h, p) {
     let dz = z + w / 2;
     let dq = q + h / 2;
-
-
     if (p) {
         p = p * (Math.PI / 20) //180deg
         context.save();
@@ -311,16 +306,10 @@ let drawRect = function(z, q, w, h, p) {
     }
 
     context.strokeRect(z, q, w, h);
-
-
     if (p) {
         context.restore();
     }
-
 }
-
-
-
 setInterval(function() {
 
     drawRect(z, q, 33, 33, p);
