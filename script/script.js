@@ -154,8 +154,8 @@ canvas.onclick = function() {
 // }
 
 let context = document.getElementById("canvas").getContext("2d");
-let width = 200,
-    height = 100;
+let width = 1100,
+    height = 500;
 
 let girl = loadImage("last-guardian-sprites/amg3_rt2.gif", 32, 32, 2);
 let girl2 = loadImage("last-guardian-sprites/amg3_lf2.gif", 32, 32, 2);
@@ -263,59 +263,59 @@ window.onload = function() {
     gameEngine();
 }
 
-// курсор мыши
-let position = document.getElementById('position');
-let cursor = document.getElementById('cursor');
-let pool = document.getElementById('pool');
+// // курсор мыши
+// let position = document.getElementById('position');
+// let cursor = document.getElementById('cursor');
+// let pool = document.getElementById('pool');
 
-let x = 0,
-    y = 0,
-    dx = 10;
-position.innerHTML = "position of cursor:" + x + "/" + y;
-setInterval(function() {
+// let x = 0,
+//     y = 0,
+//     dx = 10;
+// position.innerHTML = "position of cursor:" + x + "/" + y;
+// setInterval(function() {
 
-    position.innerHTML = "position of cursor:" + x + "/" + y;
-    cursor.style.left = x - 25 + 'px';
-    cursor.style.top = y - 25 + 'px';
-    dx += 1;
-    pool.style.left = dx + 'px';
+//     position.innerHTML = "position of cursor:" + x + "/" + y;
+//     cursor.style.left = x - 25 + 'px';
+//     cursor.style.top = y - 25 + 'px';
+//     dx += 1;
+//     pool.style.left = dx + 'px';
 
-}, 1000 / 60)
+// }, 1000 / 60)
 
-pool.onmousemove = function(event) {
-    x = event.pageX;
-    y = event.pageY;
-};
-// window.onclick = function() {
-
+// pool.onmousemove = function(event) {
+//     x = event.pageX;
+//     y = event.pageY;
 // };
+// // window.onclick = function() {
 
-// Вращение
-let z = 0; //x
-let q = 0; //y
-let p = 0; //угол
-let drawRect = function(z, q, w, h, p) {
-    let dz = z + w / 2;
-    let dq = q + h / 2;
-    if (p) {
-        p = p * (Math.PI / 20) //180deg
-        context.save();
-        context.translate(dz, dq);
-        context.rotate(p);
-        context.translate(-dz, -dq)
-    }
+// // };
 
-    context.strokeRect(z, q, w, h);
-    if (p) {
-        context.restore();
-    }
-}
-setInterval(function() {
+// // Вращение
+// let z = 0; //x
+// let q = 0; //y
+// let p = 0; //угол
+// let drawRect = function(z, q, w, h, p) {
+//     let dz = z + w / 2;
+//     let dq = q + h / 2;
+//     if (p) {
+//         p = p * (Math.PI / 20) //180deg
+//         context.save();
+//         context.translate(dz, dq);
+//         context.rotate(p);
+//         context.translate(-dz, -dq)
+//     }
 
-    drawRect(z, q, 33, 33, p);
-    drawRect(z + 20, q + 20, 33, 33, -p);
+//     context.strokeRect(z, q, w, h);
+//     if (p) {
+//         context.restore();
+//     }
+// }
+// setInterval(function() {
 
-    z++;
-    q++;
-    p++;
-}, 200)
+//     drawRect(z, q, 33, 33, p);
+//     drawRect(z + 20, q + 20, 33, 33, -p);
+
+//     z++;
+//     q++;
+//     p++;
+// }, 200)
