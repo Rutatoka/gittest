@@ -1,18 +1,11 @@
 import React from 'react';
 
 function App() {
-	return <table>
-		<tbody>
-			<tr>
-				<td>1</td>
-				<td>2</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>4</td>
-			</tr>
-		</tbody>
-	</table>;
+	const age = 11;
+	
+	return <div>
+		{age<18 ? <p>lox</p> : <p>net</p>}
+	</div>;
 }
 
 export default App;
